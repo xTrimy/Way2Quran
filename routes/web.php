@@ -17,17 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get( '/surah/{surah_name}', [PagesController::class, 'surah'])->name('surah');
-Route::get('/surah/{surah_name}/reciter/{reciter?}', [PagesController::class, 'surah'])->name('surah_reciter');
+// Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get( '/surah/{surah_name}', [PagesController::class, 'surah'])->name('surah');
+// Route::get('/surah/{surah_name}/reciter/{reciter?}', [PagesController::class, 'surah'])->name('surah_reciter');
 
-Route::get('/surah/{surah_name}/text', [PagesController::class, 'surah_text'])->name('surah_text');
-Route::get('/surah/{surah_name}/audio', [PagesController::class, 'surah_audio'])->name('surah_audio');
+// Route::get('/surah/{surah_name}/text', [PagesController::class, 'surah_text'])->name('surah_text');
+// Route::get('/surah/{surah_name}/audio', [PagesController::class, 'surah_audio'])->name('surah_audio');
 
-Route::get('/q/{reciter}/{file_path}', [PagesController::class, 'get_file_chunks'])->name('get_file_chunks');
+// Route::get('/q/{reciter}/{file_path}', [PagesController::class, 'get_file_chunks'])->name('get_file_chunks');
 
-Route::get('/reciters', [RecitersController::class, 'index'])->name('reciters');
-Route::get('/reciters/{reciter}', [RecitersController::class, 'show'])->name('reciters.show');
+// Route::get('/reciters', [RecitersController::class, 'index'])->name('reciters');
+// Route::get('/reciters/{reciter}', [RecitersController::class, 'show'])->name('reciters.show');
 
 Route::prefix('/admin')->as('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('home');
