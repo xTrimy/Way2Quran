@@ -20,7 +20,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     @livewireStyles
     <link rel="stylesheet" href="{{ asset('build/assets/app-070b8e4a.css') }}">
-    @vite('resources/css/app.css')
+    {{-- @vite('resources/css/app.css') --}}
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
