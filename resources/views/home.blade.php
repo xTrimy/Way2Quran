@@ -96,7 +96,7 @@ VANTA.HALO({
   size: 1
 })
 </script>
-@vite('resources/js/app.js')
+{{-- @vite('resources/js/app.js') --}}
    
 <script>
   document.addEventListener( 'DOMContentLoaded', function () {

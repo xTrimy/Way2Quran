@@ -7,7 +7,7 @@
     <title>{{ $surah->name }}</title>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
     <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
-    @vite('resources/css/app.css')
+    {{-- @vite('resources/css/app.css') --}}
 <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     
     <style>
@@ -32,6 +32,6 @@
 </div>
     
 
-@vite('resources/js/app.js')
+{{-- @vite('resources/js/app.js') --}}
 </body>
 </html>
