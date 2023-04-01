@@ -11,7 +11,7 @@
 
               <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">
-                Image/Icon <span class="text-red-500">*</span> (PNG/JPG)
+                Recitation(s) <span class="text-red-500">*</span> (MP3)
                 </span>
                 <input
                 type="file" wire:model="audio" multiple
