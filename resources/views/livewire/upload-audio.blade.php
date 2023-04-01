@@ -18,9 +18,10 @@
                   class="block w-full mt-1 text-sm border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                 />
               </label>
-              <div wire:loading>
-                  Processing...
-              </div>
+                  @if( $progress )
+                      <progress class="w-full" max=100 wire:model="progress" > {{ $progress }} </progress>
+                  @endif
+              
               <div class=" space-y-5 mt-5">
                 @foreach ($success_uploads as $aud)
                 <div class="flex w-full items-center justify-between">
@@ -73,7 +74,11 @@
                 </p>
              </div>
               @endif
-               
+               <script>
+                window.addEventListener('livewire-upload-progress', event => {
+                    @this.set( 'progress', event.detail.progress );
+                });
+                </script>
         </form>
 
   

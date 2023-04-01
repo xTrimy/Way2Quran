@@ -19,6 +19,8 @@ class UploadAudio extends Component
     public $upload_finished = false;
     public $listeners = [ 'upload:finished' => 'finished' ];
     public $surahs = [];
+    public $progress = 0;
+
     // public function uploadErrored($name, $errorsInJson, $isMultiple)
     // {
     //     dd($errorsInJson);
