@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ayah;
+use App\Models\Reciter;
 use App\Models\Surah;
 use App\Models\SurahAudio;
 use App\Models\SurahAudioSegment;
@@ -17,35 +18,43 @@ class PagesController extends Controller
 {
     public function surah($surah_name,$reciter = null,$text_only = false, $audio_only = false)
     {
-        $surah_name = str_replace("-"," ",trim($surah_name," "));
-        $surah = Surah::where('name', $surah_name)->first();
-        $check = null;
-        if($reciter != null){
-            $check = SurahAudio::where('reciter', $reciter)->where('surah_id', $surah->id)->first();
-        }
-        if (!$check && !$audio_only && !$text_only) {
-            $reciter = $surah->surah_audio->first()->reciter;
-            return redirect()->route('surah_reciter', ['surah_name' => $surah_name, 'reciter' => $reciter]);
-        }
-        if($audio_only && !$check){
-            $reciter = $surah->surah_audio->first()->reciter;
-        }
-        $surah = Surah::where('name', $surah_name)->with('surah_audio',function($q) use($reciter){
-             $q->reciter($reciter)->with('segments')->first();
+        $surah = Surah::where('name', $surah_name)->with('surah_audio', function ($q) {
+            $q->first();
         })->first();
-        if(!$surah){
+
+        if (!$surah) {
             return redirect()->route('home');
         }
-        $ayah = Ayah::where('surah_id',$surah->id)->orderBy('ayah_count','ASC')->get();
-        if($text_only){
-            $component = new SurahText($surah, $ayah);
-            return $component->render();
+
+        $ayah = Ayah::where('surah_id', $surah->id)->orderBy('ayah_count', 'ASC')->get();
+        if ($text_only) {
+            return view('surah_text', ['surah' => $surah, 'ayah' => $ayah]);
         }
-        if($audio_only){
-            $component = new ComponentsSurahAudio($surah, $reciter);
-            return $component->render();
+        if ($audio_only) {
+            return view('surah_audio', ['surah' => $surah, 'ayah' => $ayah]);
         }
-        return view('surah', ['surah' => $surah,'ayah'=>$ayah,'reciter'=>$reciter]);
+
+        if(!$reciter){
+            $surah_audio = SurahAudio::where('surah_id', $surah->id)->first();
+            if($surah_audio){
+                $reciter = $surah_audio->reciter_id;
+            }else{
+                $reciter = null;
+            }
+        }else{
+            $surah_audio = SurahAudio::where('surah_id', $surah->id)->where('reciter_id', $reciter)->first();
+        }
+        if($reciter != null){
+            $reciter = Reciter::find($reciter);
+        }else{
+            $reciter = Reciter::first();
+            return redirect()->route('surah', ['surah_name' => $surah_name, 'reciter' => $reciter->id]);
+        }
+
+        $surahs = Surah::all();
+        $reciters = $surah->reciters()->distinct()->get();
+        return view('surah', ['surah' => $surah, 'ayah' => $ayah, 'reciter' => $reciter, 'surahs' => $surahs, 'reciters' => $reciters, 'surah_audio' => $surah_audio]);
+
     }
     public function surah_text($surah_name)
     {

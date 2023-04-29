@@ -1,4 +1,5 @@
-<button class="text-green-500 text-xl hover:underline">
+<div>
+    <button class="text-green-500 text-xl hover:underline">
     Filter <i class="las la-caret-down"></i>
 </button>
 
@@ -18,4 +19,6 @@
             </div>
         </a>
     @endforeach
+</div>
+
 </div>

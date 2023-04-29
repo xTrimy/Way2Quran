@@ -51,8 +51,8 @@ class RecitersController extends Controller
         $reciter->name = $request->name;
         $reciter->name_en = $request->name_en;
         $reciter->slug = $request->slug;
-        $reciter->bio = $request->bio??'';
-        $reciter->bio_en = $request->bio_en??'';
+        $reciter->bio = $request->bio??null;
+        $reciter->bio_en = $request->bio_en??null;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -115,8 +115,8 @@ class RecitersController extends Controller
         $reciter->name = $request->name;
         $reciter->name_en = $request->name_en;
         $reciter->slug = $request->slug;
-        $reciter->bio = $request->bio??'';
-        $reciter->bio_en = $request->bio_en??'';
+        $reciter->bio = $request->bio??null;
+        $reciter->bio_en = $request->bio_en??null;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

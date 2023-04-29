@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Surah;
+use App\Models\SurahAudio;
 use Livewire\Component;
 
 class Surahs extends Component
@@ -10,13 +11,23 @@ class Surahs extends Component
     public $surahs;
     public $surahs_all;
     public $showMore = false;
+    public $reciter = null;
     protected $listeners = ['showMoreOrLess' => 'showMoreOrLess'];
 
     public function mount(){
-        $surahs = Surah::limit(5)->get();
-        $this->surahs = $surahs;
-        $surahs = Surah::all();
-        $this->surahs_all = $surahs;
+        if($this->reciter){
+            // get surahs which has surah_audio for this reciter
+            $this->surahs = Surah::whereHas('surah_audio', function($query){
+                $query->where('reciter_id', $this->reciter);
+            })->limit(5)->get();
+            $this->surahs_all = Surah::whereHas('surah_audio', function($query){
+                $query->where('reciter_id', $this->reciter);
+            })->get();
+
+        }else{
+            $this->surahs = Surah::limit(5)->get();
+            $this->surahs_all = Surah::all();
+        }
     }
 
     public function showMore(){
@@ -37,6 +48,7 @@ class Surahs extends Component
             $this->showMore = true;
         }
     }
+
 
     public function render()
     {

@@ -20,10 +20,11 @@
     <script src="
 https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.6/dist/js/splide.min.js
 "></script>
+
     @livewireStyles
 
-{{-- @vite('resources/css/app.css') --}}
-<link rel="stylesheet" href="{{ asset('build/assets/app-070b8e4a.css') }}">
+@vite('resources/css/app.css')
+{{-- <link rel="stylesheet" href="{{ asset('build/assets/app-070b8e4a.css') }}"> --}}
 <link href="
 https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css
 " rel="stylesheet">
@@ -31,16 +32,16 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css
     <title>@yield('title') | Way2Quran</title>
 </head>
 <body class='font-changa bg-dark-500 w-full h-full' dir="ltr">
-   
-    <div id="site" class="p-8 pb-24 overflow-hidden">
+    <livewire:share-modal >
+    <div id="site" class="pb-24 xl:p-8 lg:p-6 md:p-2 p-0 overflow-hidden">
     <x-header page="{{ $page }}" />
     @yield('content')
-    <div class="fixed bottom-0 left-0 w-full z-50 px-8 ">
+    <div class="fixed bottom-0 left-0 w-full z-50 lg:px-8 ">
         <div class="border-t border-neutral-700 relative">
             <button id="show_hide_player" class="absolute cursor-pointer bottom-full right-12 bg-dark-500 w-8 h-8 rounded-t-md border-t border-l border-r border-neutral-700 flex justify-center items-center">
                 <i class="las la-arrow-down text-neutral-600"></i>
             </button>
-            <div id="player_container" class="overflow-hidden max-h-48  transition-all">
+            <div id="player_container" class="overflow-hidden   transition-all">
                 <livewire:player />
             </div>
             </div>

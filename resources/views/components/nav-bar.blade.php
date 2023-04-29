@@ -3,8 +3,8 @@
     $current_nav_style = "text-green-500 hover:text-green-400 bg-neutral-600";
 @endphp
 <div class="flex items-center justify-between  text-md">
-    <ul class="flex items-center justify-between space-x-3">
-        <a href="{{ route('home') }}" class="pr-8 pl-6 flex items-center py-2 transition-colors rounded-full cursor-pointer
+    <ul class="flex items-center justify-between space-x-1">
+        <a href="{{ route('home') }}" class="xl:pr-6 xl:pl-4 pr-3 pl-2 flex items-center py-1 xl:py-2 transition-colors rounded-full cursor-pointer
                 {{ $page == 'home' ? $current_nav_style : $default_nav_style }}
             ">
             <li >
@@ -12,7 +12,7 @@
                 {{ __('Home') }}
             </li>
         </a>
-        <a href="{{ route('reciters') }}" class="pr-8 pl-6 flex items-center py-2 text-neutral-100 hover:text-neutral-200 hover:bg-neutral-600 transition-colors rounded-full cursor-pointer
+        <a href="{{ route('reciters') }}" class="xl:pr-6 xl:pl-4 pr-3 pl-2 flex items-center py-1 xl:py-2 text-neutral-100 hover:text-neutral-200 hover:bg-neutral-600 transition-colors rounded-full cursor-pointer
                 {{ $page == 'reciters' ? $current_nav_style : $default_nav_style }}
             ">
             <li>
@@ -20,7 +20,7 @@
                 {{ __('All Reciters') }}
             </li>
         </a>
-        <a href="#" class="pr-8 pl-6 flex items-center py-2 text-neutral-100 hover:text-neutral-200 hover:bg-neutral-600 transition-colors rounded-full cursor-pointer
+        <a href="#" class="xl:pr-6 xl:pl-4 pr-3 pl-2 flex items-center py-1 xl:py-2 text-neutral-100 hover:text-neutral-200 hover:bg-neutral-600 transition-colors rounded-full cursor-pointer
                 {{ $page == 'quran' ? $current_nav_style : $default_nav_style }}
             ">
             <li>
@@ -28,7 +28,7 @@
                 {{ __('The Quran') }}
             </li>
         </a>
-        <a href="#" class="pr-8 pl-6 flex items-center py-2 text-neutral-100 hover:text-neutral-200 hover:bg-neutral-600 transition-colors rounded-full cursor-pointer
+        <a href="#" class="xl:pr-6 xl:pl-4 pr-3 pl-2 flex items-center py-1 xl:py-2 text-neutral-100 hover:text-neutral-200 hover:bg-neutral-600 transition-colors rounded-full cursor-pointer
                 {{ $page == 'ten-readings' ? $current_nav_style : $default_nav_style }}
             ">
             <li >
@@ -36,7 +36,7 @@
                 {{ __('The Ten Readings') }}
             </li>
         </a>
-        <a href="#" class="pr-8 pl-6 flex items-center py-2 text-neutral-100 hover:text-neutral-200 hover:bg-neutral-600 transition-colors rounded-full cursor-pointer
+        <a href="#" class="xl:pr-6 xl:pl-4 pr-3 pl-2 flex items-center py-1 xl:py-2 text-neutral-100 hover:text-neutral-200 hover:bg-neutral-600 transition-colors rounded-full cursor-pointer
                 {{ $page == 'various-recitations' ? $current_nav_style : $default_nav_style }}
             ">
             <li>
