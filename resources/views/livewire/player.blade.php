@@ -1,11 +1,11 @@
-<div id="player_audio_container" class="w-full py-2 px-4 bg-dark-500 flex lg:flex-nowrap flex-wrap items-center" data-surah="{{ $surah_audio->surah_id }}" data-reciter="{{ $surah_audio->reciter_id }}" data-surah-audio="{{ $surah_audio->id }}">
+<div id="player_audio_container" class="w-full py-2 px-4 bg-light-500 dark:bg-dark-500 flex lg:flex-nowrap flex-wrap items-center" data-surah="{{ $surah_audio->surah_id }}" data-reciter="{{ $surah_audio->reciter_id }}" data-surah-audio="{{ $surah_audio->id }}">
     <div class="flex lg:justify-start justify-between lg:w-auto w-full">
         <div class="flex items-center mr-2">
             <div class="lg:w-16 w-9 lg:h-16 h-9 rounded-full bg-white overflow-hidden">
                 <img src="{{ asset($reciter->image) }}" class="w-full h-full object-cover" alt="">
             </div>
-            <div class="mx-4 text-white lg:text-base text-sm">
-                <p><a href="{{ route('reciters.show',$reciter) }}">{{ $surah_audio->reciter_model->name }}</a></p>
+            <div class="mx-4 text-black dark:text-white lg:text-base text-sm">
+                <p class="font-bold"><a href="{{ route('reciters.show',$reciter) }}">{{ $surah_audio->reciter_model->name }}</a></p>
                 <p><a href="{{ route('surah',['reciter'=>$reciter->id,'surah_name'=>$surah_audio->surah->name]) }}">{{ $surah_audio->surah->name }}</a></p>
             </div>
             <livewire:love-button :surah="$surah" :reciter="$reciter" icon_only="false" :key="$surah->id.$reciter->id" />
@@ -13,7 +13,7 @@
         <div class="flex flex-grow justify-around items-center space-x-2 lg:ml-8 ml-2">
             <a href="{{ route('surah',['surah_name'=>$prev_surah->name,'reciter'=>$reciter->id]) }}">
                 <div class="lg:w-6 w-4 lg:h-6 h-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 23 23">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="text-neutral-500 dark:text-white" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 23 23">
                         <defs>
                             <clipPath id="clip-path">
                             <rect id="Rectangle_70" data-name="Rectangle 70" width="23" height="23" transform="translate(0.259 0)" fill="currentColor" stroke="currentColor" stroke-width="1"/>
@@ -29,7 +29,7 @@
                 </div>
 
             </a>
-            <button id="play_pause" class="lg:w-16 w-12 lg:h-16 h-12 rounded-full bg-white hover:bg-neutral-300 active:bg-neutral-400 flex items-center justify-center ">
+            <button id="play_pause" class="lg:w-16 w-12 lg:h-16 h-12 rounded-full dark:text-black text-white bg-neutral-500 hover:bg-neutral-600 dark:bg-white dark:hover:bg-neutral-300 active:bg-neutral-400 flex items-center justify-center ">
                 <div wire:loading>
                     <i class="las la-spinner animate-spin lg:text-3xl text-2xl"></i>
                 </div>
@@ -39,7 +39,7 @@
             </button>
             <a href="{{ route('surah',['surah_name'=>$next_surah->name,'reciter'=>$reciter->id]) }}">
                 <div class="lg:w-6 w-4 lg:h-6 h-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 23 23">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="text-neutral-500 dark:text-white" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 23 23">
                         <defs>
                             <clipPath id="clip-path">
                             <rect id="Rectangle_69" data-name="Rectangle 69" width="23" height="23" transform="translate(-0.259 0)" fill="currentColor" stroke="currentColor" stroke-width="1"/>
@@ -82,12 +82,12 @@
             if(added){
                 document.getElementById('player-heart').classList.remove('lar');
                 document.getElementById('player-heart').classList.add('las');
-                document.getElementById('player-heart').classList.add('text-green-500');
+                document.getElementById('player-heart').classList.add('dark:text-green-500 text-green-600');
                 document.getElementById('player-heart').classList.remove('text-white');
             }else{
                 document.getElementById('player-heart').classList.remove('las');
                 document.getElementById('player-heart').classList.add('lar');
-                document.getElementById('player-heart').classList.remove('text-green-500');
+                document.getElementById('player-heart').classList.remove('dark:text-green-500 text-green-600');
                 document.getElementById('player-heart').classList.add('text-white');
             }
         });
@@ -95,10 +95,10 @@
         function loopButton(e){
             window.player.loop = !window.player.loop;
             if(window.player.loop){
-                e.classList.add('text-green-500');
+                e.classList.add('dark:text-green-500 text-green-600');
                 e.classList.remove('text-neutral-400');
             }else{
-                e.classList.remove('text-green-500');
+                e.classList.remove('dark:text-green-500 text-green-600');
                 e.classList.add('text-neutral-400');
             }
         }

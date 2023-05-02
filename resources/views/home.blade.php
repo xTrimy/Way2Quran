@@ -8,37 +8,37 @@ Home
 @section('content')
     <div class="wrapper w-full h-full pb-4" style="--tw-bg-opacity:0.5">
         {{-- <div class="background-animation"></div> --}}
-        <div class="flex xl:flex-row flex-col-reverse items-center h-full relative justify-center side-paddings bg-neutral-900 py-24" id="hero">
+        <div class="flex xl:flex-row flex-col-reverse items-center h-full relative justify-center side-paddings bg-light-500 dark:bg-neutral-900 py-24" id="hero">
           <div class="absolute bottom-0 right-0">
             <img src="{{ asset('vectors/hero-bg.svg') }}" alt="">
           </div>
           <div class="flex flex-col xl:mr-16 relative z-10 xl:items-start items-center">
-              <div class="lg:text-5xl text-3xl text-left text-neutral-100 font-bold">{{ __('Welcome to Way2Quran') }}</div>
-              <div class="lg:text-4xl text-2xl text-left text-neutral-100 ">{{ __('The best place to learn Quran') }}</div>
-              <div class="lg:text-3xl text-xl text-left text-neutral-100 mt-4 ">{{ __('Listen to Quran recitations') }}</div>
-              <div class="lg:text-3xl text-xl text-left text-neutral-100 ">{{ __('from the best reciters') }}</div>
+              <div class="lg:text-5xl text-3xl text-left dark:text-neutral-100 font-bold">{{ __('Welcome to Way2Quran') }}</div>
+              <div class="lg:text-4xl text-2xl text-left dark:text-neutral-100 ">{{ __('The best place to learn Quran') }}</div>
+              <div class="lg:text-3xl text-xl text-left dark:text-neutral-100 mt-4 ">{{ __('Listen to Quran recitations') }}</div>
+              <div class="lg:text-3xl text-xl text-left dark:text-neutral-100 ">{{ __('from the best reciters') }}</div>
               <div class="flex xl:space-x-2 xl:flex-nowrap flex-wrap">
-                <button class="bg-transparent border xl:w-auto w-full xl:flex-grow-0 flex-grow border-green-400 hover:bg-neutral-700 transition-colors text-green-400 px-24 py-2 rounded-xl mt-4">{{ __('Listen Now') }}</button>
-                <button class="bg-transparent border xl:w-auto w-full xl:flex-grow-0 flex-grow border-neutral-400 hover:bg-neutral-700 transition-colors text-neutral-400 px-24 py-2 rounded-xl mt-4">{{ __('Browse Reciters') }}</button>
+                <button class="bg-transparent border xl:w-auto w-full xl:flex-grow-0 flex-grow border-green-600 dark:border-green-400 hover:bg-light-400 dark:hover:bg-neutral-700 transition-colors text-green-600 dark:text-green-400 px-24 py-2 rounded-xl mt-4">{{ __('Listen Now') }}</button>
+                <button class="bg-transparent border xl:w-auto w-full xl:flex-grow-0 flex-grow border-neutral-400 hover:bg-light-400 dark:hover:bg-neutral-700 transition-colors text-neutral-400 px-24 py-2 rounded-xl mt-4">{{ __('Browse Reciters') }}</button>
               </div>
           </div>
            
            
-            <div class="lg:w-84 w-64 lg:h-84 h-64 xl:ml-16 xl:mb-0 mb-4">
+            <div class="lg:w-80 w-64 lg:h-80 h-64 xl:ml-16 xl:mb-0 mb-4">
                 <img src="{{ asset('images/logo-original.png') }}" class="w-full h-full object-contain" alt="Way2Quran Hero" >
             </div>
         </div>
         <div class="lg:px-8 px-2">
           <div class="side-paddings mt-8">
-          <h2 class="lg:text-3xl text-2xl text-white">
+          <h2 class="lg:text-3xl text-2xl dark:text-white">
             Featured Reciters
           </h2>
-          <hr class="border border-neutral-500 my-4">
+          <hr class="border dark:border-neutral-500 my-4">
           <div class="flex justify-between">
-            <p class="text-white lg:text-lg">
+            <p class="dark:text-white lg:text-lg">
               Expertly curated playlists of the world's best voice of the moment
             </p>
-            <button class="text-green-500 whitespace-nowrap hover:underline text-xl">
+            <button class="dark:text-green-500 text-green-600 whitespace-nowrap hover:underline text-xl">
                 See All
             </button>
           </div>
@@ -49,13 +49,13 @@ Home
                 @for ($i=0; $i<20; $i++)
                   <li class="splide__slide w-full">
                   <div class="lg:p-2 p-1 w-full">
-                    <div class="py-3 lg:px-6 px-2 rounded-2xl w-full bg-neutral-700 flex space-x-2 items-center" style="--tw-bg-opacity:0.5">
+                    <div class="py-3 lg:px-6 px-2 rounded-2xl w-full bg-neutral-300 dark:bg-neutral-700 flex space-x-2 items-center" style="--tw-bg-opacity:0.5">
                       <div class="lg:w-24 w-16 lg:h-24 h-16 rounded-full overflow-hidden">
                         <img src="{{ asset('images/logo-original.png') }}" class="bg-neutral-600 w-full h-full object-cover" alt="">
                       </div>
                       <div>
                         <p class="lg:text-xl text-sm text-primary-500">Mukhtar Al Hajj</p>
-                        <p class="lg:text-lg text-sm lg:block hidden text-white">Go to playlist</p>
+                        <p class="lg:text-lg text-sm lg:block hidden dark:text-white">Go to playlist</p>
                       </div>
                     </div>
                   </div>

@@ -17,7 +17,7 @@ class UploadAudio extends Component
     public $reciter;
     public $success = false;
     public $upload_finished = false;
-    public $listeners = [ 'upload:finished' => 'finished' ];
+    public $listeners = [ 'upload:finished' => 'finished', 'save' => 'save' ];
     public $surahs = [];
     public $progress = 0;
 
@@ -32,9 +32,10 @@ class UploadAudio extends Component
     }
 
     public function updatedAudio(){
-        $this->validate([
-            'audio.*' => 'mimes:mp3'
-        ]);
+        // // get mime type
+        // $this->validate([
+        //     'audio.*' => 'mimetypes:audio/mpeg, audio/ogg, audio/wav, audio/x-wav, audio/mp3, audio/x-m4a'
+        // ]);
     }
 
     public function finished()
@@ -50,19 +51,47 @@ class UploadAudio extends Component
 
     public function save()
     {
-        $this->validate([
-            'audio.*' => 'mimes:mp3'
-        ]);
         $reciter = Reciter::find($this->reciter)->first();
         foreach ($this->audio as $audio) {
             // store in public folder
-            $audio->storeAs('public/Quran/' . $reciter->slug, $audio->getClientOriginalName());
-            $surah = Surah::where('surah_order', (int)explode('-', $audio->getClientOriginalName())[0])->first();
-            $reciter->surah_audio()->create([
-                'surah_id' => $surah->id,
-                'path' => $reciter->slug . '/' . $audio->getClientOriginalName()
-            ]);
-            $this->success_uploads[] = $audio;
+            $audio_mimes = ['audio/mpeg', 'audio/ogg', 'audio/wav', 'audio/x-wav', 'audio/mp3', 'audio/x-m4a'];
+            if(in_array($audio->getMimeType(), $audio_mimes)){
+                $audio->storeAs('public/Quran/' . $reciter->slug, $audio->getClientOriginalName());
+                $surah = Surah::where('surah_order', (int)explode('-', $audio->getClientOriginalName())[0])->first();
+                $reciter->surah_audio()->create([
+                    'surah_id' => $surah->id,
+                    'path' => $reciter->slug . '/' . $audio->getClientOriginalName()
+                ]);
+                $this->success_uploads[] = $audio;
+            }else if($audio->getMimeType() == 'application/zip'){
+                $zip = new \ZipArchive;
+                $res = $zip->open($audio->getRealPath());
+                if ($res === TRUE) {
+                    $zip->extractTo(storage_path('app/public/Quran/' . $reciter->slug));
+                    $zip->close();
+                    $files = scandir(storage_path('app/public/Quran/' . $reciter->slug));
+                    foreach ($files as $file) {
+                        if($file != '.' && $file != '..'){
+                            $surah = Surah::where('surah_order', (int)explode('-', $file)[0])->first();
+                            // check if surah_audio exists
+                            if($reciter->surah_audio()->where('surah_id', $surah->id)->exists()){
+                                $reciter->surah_audio()->where('surah_id', $surah->id)->delete();
+                            }
+                            $reciter->surah_audio()->create([
+                                'surah_id' => $surah->id,
+                                'path' => $reciter->slug . '/' . $file
+                            ]);
+                        }
+                    }
+                    // delete zip file
+                    unlink($audio->getRealPath());
+                    $this->dispatchBrowserEvent('upload:finished', ['message' => 'Upload finished.']);
+                } else {
+                    $this->addError('audio', 'The zip file is not valid.');
+                }
+            }else{
+                $this->addError('audio', 'The file type is not valid.');
+            }
         }
         $this->audio = [];
         $this->upload_finished = false;

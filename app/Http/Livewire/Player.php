@@ -14,10 +14,12 @@ class Player extends Component
     public $reciter;
     public $next_surah;
     public $prev_surah;
+    public $show;
     protected $listeners = ['playAudio' => 'play'];
 
-    public function mount($surah = null, $reciter = null)
+    public function mount($surah = null, $reciter = null, $show=false)
     {
+        $this->show = $show;
         if($surah == null) {
             $this->surah = Surah::first();
         } else {
@@ -62,7 +64,7 @@ class Player extends Component
         }
         $this->next_surah = $this->surah->next_surah();
         $this->prev_surah = $this->surah->prev_surah();
-
+        $this->show = true;
         $this->dispatchBrowserEvent('contentChanged');
 
     }
@@ -71,6 +73,13 @@ class Player extends Component
 
     public function render()
     {
-        return view('livewire.player');
+        if($this->show)
+            return view('livewire.player');
+        else{
+            return <<<'blade'
+            <div>
+            </div>
+        blade;
+        }
     }
 }

@@ -24,38 +24,42 @@
               
               <div class=" space-y-5 mt-5">
                 @foreach ($success_uploads as $aud)
-                <div class="flex w-full items-center justify-between">
-                    <div>
-                        <audio controls>
-                            <source src="{{ $aud->temporaryUrl() }}" type="audio/mpeg">
-                        </audio>
-                    </div>
-                    <div>
-                        <p class="text-green-600 dark:text-green-400">
-                            {{ $aud->getClientOriginalName() }} <i class="mx-2 las la-check text-lg"></i>
-                        </p>
-                    </div>
-                  
-                </div>
-              @endforeach
+                    @if($aud->extension() == 'mp3')
+                        <div class="flex w-full items-center justify-between">
+                            <div>
+                                <audio controls>
+                                    <source src="{{ $aud->temporaryUrl() }}" type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div>
+                                <p class="text-green-600 dark:text-green-400">
+                                    {{ $aud->getClientOriginalName() }} <i class="mx-2 las la-check text-lg"></i>
+                                </p>
+                            </div>
+                        
+                        </div>
+                    @endif
+                @endforeach
                 @foreach ($audio as $aud)
-                <div class="flex w-full items-center justify-between">
-                    <div>
-                        <audio controls>
-                            <source src="{{ $aud->temporaryUrl() }}" type="audio/mpeg">
-                        </audio>
-                    </div>
-                    <div>
-                        <p class="text-gray-700 dark:text-gray-400">
-                            {{ $aud->getClientOriginalName() }}
-                        </p>
-                    </div>
-                    <div>
-                        <button type="button" wire:click="remove({{ $loop->index }})" class="text-red-500">
-                            <i class="las la-trash"></i>
-                        </button>
-                    </div>
-                </div>
+                    @if($aud->extension() == 'mp3')
+                        <div class="flex w-full items-center justify-between">
+                            <div>
+                                <audio controls>
+                                    <source src="{{ $aud->temporaryUrl() }}" type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div>
+                                <p class="text-gray-700 dark:text-gray-400">
+                                    {{ $aud->getClientOriginalName() }}
+                                </p>
+                            </div>
+                            <div>
+                                <button type="button" wire:click="remove({{ $loop->index }})" class="text-red-500">
+                                    <i class="las la-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    @endif
               @endforeach
               </div>
               <button type="submit" 
@@ -68,8 +72,8 @@
             </button>
             @else
              <div class="flex items-center justify-center flex-col w-full py-32">
-              <i class="las la-check text-5xl text-green-500"></i>
-                <p class="text-green-500">
+              <i class="las la-check text-5xl dark:text-green-500 text-green-600"></i>
+                <p class="dark:text-green-500 text-green-600">
                   Files uploaded successfully!
                 </p>
              </div>
@@ -77,6 +81,12 @@
                <script>
                 window.addEventListener('livewire-upload-progress', event => {
                     @this.set( 'progress', event.detail.progress );
+                });
+                window.addEventListener('livewire-upload-finish', event => {
+                    // reload the page to see new uploads
+                    // emit save
+                    Livewire.emit('save');
+                    @this.set( 'success', true );
                 });
                 </script>
         </form>

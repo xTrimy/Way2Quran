@@ -80,7 +80,7 @@ Reciters
                       </td>
                       <td class="px-4 py-3">
                         <a href="{{ route('admin.reciters.edit',$reciter->id) }}">
-                            <div class="bg-transparent inline-block hover:bg-slate-200 dark:hover:bg-slate-700 text-green-500 py-2 px-2 rounded-md">
+                            <div class="bg-transparent inline-block hover:bg-slate-200 dark:hover:bg-slate-700 dark:text-green-500 text-green-600 py-2 px-2 rounded-md">
                                 <i class="las la-pen text-xl"></i>
                             </div>
                         </a>

@@ -4,7 +4,7 @@
 @endphp
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" :class="{ 'dark': dark }" x-data="data()">
 <head class="w-full h-full">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,22 +23,27 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.6/dist/js/splide.min.js
 
     @livewireStyles
 
-@vite('resources/css/app.css')
-{{-- <link rel="stylesheet" href="{{ asset('build/assets/app-070b8e4a.css') }}"> --}}
+{{-- @vite('resources/css/app.css') --}}
+<link rel="stylesheet" href="{{ asset('build/assets/app-db57be33.css') }}">
 <link href="
 https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css
 " rel="stylesheet">
+<script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+    <script src="{{ asset('js/init-alpine.js') }}"></script>
 
     <title>@yield('title') | Way2Quran</title>
 </head>
-<body class='font-changa bg-dark-500 w-full h-full' dir="ltr">
+<body class='font-changa bg-light-300 dark:bg-dark-500 w-full h-full' dir="ltr">
     <livewire:share-modal >
     <div id="site" class="pb-24 xl:p-8 lg:p-6 md:p-2 p-0 overflow-hidden">
     <x-header page="{{ $page }}" />
     @yield('content')
     <div class="fixed bottom-0 left-0 w-full z-50 lg:px-8 ">
-        <div class="border-t border-neutral-700 relative">
-            <button id="show_hide_player" class="absolute cursor-pointer bottom-full right-12 bg-dark-500 w-8 h-8 rounded-t-md border-t border-l border-r border-neutral-700 flex justify-center items-center">
+        <div class="border-t dark:border-neutral-700 relative">
+            <button id="show_hide_player" class="absolute cursor-pointer bottom-full right-12 bg-light-500 dark:bg-dark-500 w-8 h-8 rounded-t-md border-t border-l border-r dark:border-neutral-700 flex justify-center items-center">
                 <i class="las la-arrow-down text-neutral-600"></i>
             </button>
             <div id="player_container" class="overflow-hidden   transition-all">

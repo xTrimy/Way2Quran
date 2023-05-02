@@ -10,7 +10,7 @@ All Reciters
 
         <div class="px-8 py-8">
           <div class="side-paddings">
-          <h2 class="text-2xl text-white">
+          <h2 class="text-2xl dark:text-white">
             All Reciters
           </h2>
           

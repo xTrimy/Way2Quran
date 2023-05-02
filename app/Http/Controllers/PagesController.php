@@ -97,8 +97,7 @@ class PagesController extends Controller
         $file = "Quran/" . $reciter . "/" . $file_path;
         $extension = "mp3";
         $mime_type = "audio/mpeg, audio/x-mpeg, audio/x-mpeg-3, audio/mpeg3";
-        $file = Storage::path($file);
-        
+        $file = Storage::disk('public')->path($file);
         if (file_exists($file)) {
             header("Content-type: {$mime_type}");
             header("Accept-Ranges: bytes");

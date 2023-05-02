@@ -6,7 +6,7 @@ surah
 {{ $surah->name }}
 @endsection
 @section('content')
-<div class="w-full flex lg:flex-row flex-col items-center side-paddings bg-neutral-900">
+<div class="w-full flex lg:flex-row flex-col items-center side-paddings bg-light-500 dark:bg-neutral-900">
     <div class="flex-grow lg:py-8 py-2 side-paddings lg:text-left text-center">
         <button type="button" class="text-neutral-400 mb-4 group relative">
             Surah <i class="las la-caret-down"></i>
@@ -61,7 +61,7 @@ surah
 </div>
 <div class="side-paddings">
     <div class="w-full flex flex-wrap my-4 side-paddings">
-        <button id="surah_play_pause_button" class="rounded-full mr-4 mb-2 text-green-500 flex items-center py-1 pl-4 pr-8 text-lg border border-green-500">
+        <button id="surah_play_pause_button" class="rounded-full mr-4 mb-2 dark:text-green-500 text-green-600 flex items-center py-1 pl-4 pr-8 text-lg border border-green-500">
             <i class="las la-play text-2xl mr-4"></i> Play 
         </button>
         <livewire:love-button :key="$surah->id.$reciter->id"  :surah="$surah" :reciter="$reciter" />

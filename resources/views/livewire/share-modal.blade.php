@@ -17,7 +17,7 @@
                 <i class="lab la-twitter text-4xl"></i>
             </a>
             {{-- whatsapp share link --}}
-            <a href="https://api.whatsapp.com/send?text={{ urldecode( url()->current() ) }}" id="whatsapp_sharer" target="_blank" class="flex items-center justify-center w-16 text-green-500 h-16 shadow-md bg-white rounded-full">
+            <a href="https://api.whatsapp.com/send?text={{ urldecode( url()->current() ) }}" id="whatsapp_sharer" target="_blank" class="flex items-center justify-center w-16 dark:text-green-500 text-green-600 h-16 shadow-md bg-white rounded-full">
                 <i class="lab la-whatsapp text-4xl"></i>
             </a>
         </div>
