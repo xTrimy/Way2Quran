@@ -19,7 +19,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     @livewireStyles
-    <link rel="stylesheet" href="{{ asset('build/assets/app-db57be33.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app-d6edd5b0.css') }}">
     {{-- @vite('resources/css/app.css') --}}
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"

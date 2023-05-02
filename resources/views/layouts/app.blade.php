@@ -24,7 +24,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.6/dist/js/splide.min.js
     @livewireStyles
 
 {{-- @vite('resources/css/app.css') --}}
-<link rel="stylesheet" href="{{ asset('build/assets/app-db57be33.css') }}">
+<link rel="stylesheet" href="{{ asset('build/assets/app-d6edd5b0.css') }}">
 <link href="
 https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css
 " rel="stylesheet">
