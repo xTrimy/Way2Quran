@@ -51,6 +51,7 @@ class UploadAudio extends Component
 
     public function save()
     {
+        ini_set('max_execution_time', 600);
         $reciter = Reciter::find($this->reciter)->first();
         foreach ($this->audio as $audio) {
             // store in public folder
